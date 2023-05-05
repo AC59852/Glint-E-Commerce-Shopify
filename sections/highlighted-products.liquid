@@ -1,0 +1,56 @@
+<section class="highlighted">
+  <div class="headings headings--highlighted">
+    <h2 class="heading heading--highlighted">{{ section.settings.heading }}</h2>
+    <h3 class="subheading subheading--highlighted">{{ section.settings.subheading }}</h3>
+  </div>
+
+  <div class="highlighted__products">
+    {% for product in section.settings.products %}
+      <article class="product--highlighted">
+        <a href="{{ product.url }}" class="product--imgLink">
+          <div class="productWrapper--highlighted">
+            <img src="{{ product.featured_image | img_url: '500x' }}" alt="{{ product.title | escape }}">
+          </div>
+        </a>
+        <h4>{{ product.title }}</h4>
+        <a href="{{ product.url }}" class="product--paraLink">
+          <p>Learn More</p>
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Highlighted Products",
+    "class": "home__section home__section--highlighted",
+    "settings": [
+      {
+        "type": "product_list",
+        "id": "products",
+        "label": "Products",
+        "limit": 2
+      }, {
+        "type": "header",
+        "content": "Heading"
+      }, {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Highlighted Products"
+      }, {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading",
+        "default": "Our favourite products"
+      }
+    ],
+
+    "presets": [
+      {
+        "name": "Highlighted Products"
+      }
+    ]
+  }
+{% endschema %}

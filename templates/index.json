@@ -1,0 +1,19 @@
+{
+  "name": "Index",
+  "sections": {
+    "hero": {
+      "type":  "hero"
+    },
+    "highlighted-products": {
+      "type":  "highlighted-products"
+    },
+    "products-row": {
+      "type":  "products-row"
+    }
+  },
+  "order": [
+    "hero",
+    "highlighted-products",
+    "products-row"
+  ]
+}

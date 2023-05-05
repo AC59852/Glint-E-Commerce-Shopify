@@ -1,0 +1,35 @@
+<section class="hero">
+  <div class="hero__text">
+    <h1 class="hero__title">{{ section.settings.heading }}</h1>
+    <h2 class="hero__subtitle">{{ section.settings.subheading }}</h2>
+    <a class="hero__link" href="/collections/all">Shop Now</a>
+  </div>
+  {% if section.settings.hero_image != blank %}
+    <img class="hero__img" src="{{ section.settings.hero_image | img_url: 'master' }}">
+  {% endif %}
+</section>
+
+{% schema %}
+  {
+    "name": "Hero",
+    "tag": "section",
+    "class": "hero",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Glint E-Commerce Theme"
+      }, {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading",
+        "default": "Templates You Love"
+      }, {
+        "type": "image_picker",
+        "id": "hero_image",
+        "label": "Hero Image"
+      }
+    ]
+  }
+{% endschema %}

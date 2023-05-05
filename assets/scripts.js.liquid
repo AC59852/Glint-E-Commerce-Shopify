@@ -1,0 +1,15 @@
+let nav = document.querySelector('.header__nav'),
+    exploreLink = document.querySelector('.header__link--explore'),
+    superNav = document.querySelector('.header__supernav');
+
+exploreLink.addEventListener("mouseover", () => {
+  superNav.classList.add("show");
+});
+
+superNav.addEventListener("mouseover", () => {
+  superNav.classList.add("show");
+});
+
+superNav.addEventListener("mouseout", () => {
+  superNav.classList.remove("show");
+});

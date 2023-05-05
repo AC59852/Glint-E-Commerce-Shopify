@@ -1,0 +1,52 @@
+<section class="product">
+  <div class="product__imgWrapper">
+    <img class="product__img" src="{{ product.featured_image | img_url: 'master' }}" alt="Featured Image">
+    <div class="product__smallImgs">
+      {% for image in product.images%}
+        <img class="product__preview" src="{{ image.src | img_url: '1024x1024' }}" alt="">
+      {% endfor %}
+    </div>
+  </div>
+  <section class="product__content">
+    <div class="product__heading">
+      <ul>
+        {% for tag in product.tags %}
+          <li>{{ tag }}</li>
+        {% endfor %}
+      </ul>
+      <h1>{{ product.title }}</h1>
+      <h2>{{ product.price | money }}</h2>
+    </div>
+    <div class="product__desc">{{ product.description }}</div>
+    <div class="product__bullets">
+      <ul>
+        {%if product.metafields.custom.bulleted_list != blank %}
+          {% assign bullets = product.metafields.custom.bulleted_list.value %}
+          {% for bullet in bullets %}
+            <li>{{ bullet }}</li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+    <div class="product__cart">
+    <form action="/cart/add" method="post" enctype="multipart/form-data" class="product__form">
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+      <input type="hidden" name="quantity" value="1" />
+      <button type="submit" class="product__btn">Add to Cart</button>
+    </form>
+  </div>
+  </section>
+</section>
+<script>
+  {% assign images = product.images | json %}
+
+  let images = {{images}},
+      featuredImage = document.querySelector('.product__img'),
+      previewImages = document.querySelectorAll('.product__preview');
+
+  previewImages.forEach((image, index) => {
+    image.addEventListener('click', () => {
+      featuredImage.src = images[index];
+    });
+  });
+</script>
